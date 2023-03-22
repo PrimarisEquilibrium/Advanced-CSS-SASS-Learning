@@ -69,3 +69,39 @@ body {
 .logo {
     height: 35px;
 }
+
+/* 
+- When centering elements that don't set their point of origin in the middle of the element set a translate of -50% of the element
+- Translate coordinates % is based on element properties
+*/
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* 
+    - transform: translate(<translate-list>) -> Translates the element given the list of coordinates
+    */
+    transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* 
+- A solution to create line breaks is to make elements block level elements
+*/
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+}
