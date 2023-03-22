@@ -1,0 +1,71 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* 
+- Universal Selector
+- CSS inside performs a complete reset of our webpage
+
+- box-sizing -> default heights and widths properties
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+- Fonts should be declared inside body
+- To add spacing around the entire webpage add a padding to the body
+*/
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777777;
+    padding: 30px;
+}
+
+/* 
+- vh (viewport height) is the % of the screen covered.
+- To define a url wrap it inside of a url()
+- Gradients should always be defined inside the background-image
+- You can layer background-images by adding comas
+- Position relative provides a reference of where children elements should position themselves relative from
+*/
+.header {
+    height: 95vh;
+    /* 
+    - background-size: cover; -> Makes image cover the available space
+    - linear-gradient(to [direction(s)], color #1, color #2, etc...) 
+    */
+    background-image: linear-gradient(to right bottom,rgba(128, 214, 113, 0.8), rgba(39, 180, 133, 0.8)), url("../img/hero.jpg");
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    /* 
+    - clip-path: [shape]; -> From a path makes everything visible while the rest is hidden
+    - polygon([...args(x y)]) -> Lets you build complex shapes with CSS
+    */
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+}
+
+/* 
+- Positioning using absolute provides properties like top and right to nudge a DOM element in a certain position
+*/
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
