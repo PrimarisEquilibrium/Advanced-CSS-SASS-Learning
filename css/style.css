@@ -12,11 +12,23 @@ Dark green: #28b485
 - CSS inside performs a complete reset of our webpage
 
 - box-sizing -> default heights and widths properties
+- box-sizing should also be inherited and in the body should be defined, it is better practice
 */
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+/* 
+- Root font from rem values
+- Using a value of 10px for rem makes conversions easy
+- It is good practice to rather use percentages rather than px in the root font as if a user has a certain browser font size they don't be able to use it
+*/
+html {
+    font-size: 62.5%;
 }
 
 /* 
@@ -26,10 +38,12 @@ Dark green: #28b485
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+
+    box-sizing: border-box;
 }
 
 /* 
@@ -41,46 +55,39 @@ body {
 */
 .header {
     height: 95vh;
-    /* 
-    - background-size: cover; -> Makes image cover the available space
-    - linear-gradient(to [direction(s)], color #1, color #2, etc...) 
-    */
+    /* background-size: cover; -> Makes image cover the available space */
+    /* linear-gradient(to [direction(s)], color #1, color #2, etc...)  */
     background-image: linear-gradient(to right bottom,rgba(128, 214, 113, 0.8), rgba(39, 180, 133, 0.8)), url("../img/hero.jpg");
     background-size: cover;
     background-position: top;
     position: relative;
-
-    /* 
-    - clip-path: [shape]; -> From a path makes everything visible while the rest is hidden
-    - polygon([...args(x y)]) -> Lets you build complex shapes with CSS
-    */
+    /* clip-path: [shape]; -> From a path makes everything visible while the rest is hidden */
+    /* polygon([...args(x y)]) -> Lets you build complex shapes with CSS */
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
 
 /* 
 - Positioning using absolute provides properties like top and right to nudge a DOM element in a certain position
 */
-.logo-box {
+.header__logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
-.logo {
-    height: 35px;
+.header__logo {
+    height: 3.5rem;
 }
 
 /* 
 - When centering elements that don't set their point of origin in the middle of the element set a translate of -50% of the element
 - Translate coordinates % is based on element properties
 */
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
-    /* 
-    - transform: translate(<transform-list>) -> Translates the element given the list of coordinates
-    */
+    /* transform: translate(<transform-list>) -> Translates the element given the list of coordinates */
     transform: translate(-50%, -50%);
     text-align: center;
 }
@@ -89,17 +96,17 @@ body {
     color: #fff;
     text-transform: uppercase;
 
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 /* 
 - A solution to create line breaks is to make elements block level elements
 */
-.heading-primary-main {
+.heading-primary--main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3rem;
     
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -108,11 +115,11 @@ body {
     /* animation-delay: 3s; */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
     animation: moveInRight 1s ease-out;
 }
 
@@ -127,11 +134,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }   
     
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -144,11 +151,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }   
     
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -161,7 +168,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }   
 
     100% {
@@ -179,17 +186,17 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     /* Allows for resizing width & height/padding & margin while acting like an inline */
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .2s;
     position: relative;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
 }
 
 /* 
@@ -197,10 +204,10 @@ body {
 */
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
 }
 
-.btn-white {
+.btn--white {
     background-color: white;
     color: #777;
 }
@@ -214,7 +221,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -234,10 +241,8 @@ body {
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .75s;
-    /* 
-    animation-fill-mode: backwards; -> applys the 0% animation before the animation begins
-    */
+    /* animation-fill-mode: backwards; -> applys the 0% animation before the animation begins */
     animation-fill-mode: backwards;
 }
